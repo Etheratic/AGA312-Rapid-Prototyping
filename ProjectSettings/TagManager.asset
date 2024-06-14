@@ -6,6 +6,12 @@ TagManager:
   tags:
   - PowerUp
   - Enemy
+  - Red
+  - Green
+  - Blue
+  - Rgem
+  - Bgem
+  - Ggem
   layers:
   - Default
   - TransparentFX

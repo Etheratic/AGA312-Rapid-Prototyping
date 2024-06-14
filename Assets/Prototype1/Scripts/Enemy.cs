@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Enemy : GameBehaviour
 {
-    public float speed;
+    public float speed = 3;
     private Rigidbody enemyRb;
     private GameObject player;
+
 
 
     // Start is called before the first frame update
@@ -26,6 +27,8 @@ public class Enemy : GameBehaviour
         {
             Destroy(gameObject);
         }
+
+        
 
     }
 }

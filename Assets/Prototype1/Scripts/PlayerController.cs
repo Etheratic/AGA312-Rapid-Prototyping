@@ -3,68 +3,61 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : GameBehaviour
 {
-    public enum Direction { north, east, south, west }
+   
     public GameObject player;
-    public float moveDistance = 2f;
+    public Rigidbody rb;
+    public float speed = 5f;
+    public float jumpForce = 2f;
+
+
     public float moveTweenTime = 1f;
     public Ease moveEase;
 
     private bool hasPowerUp;
     public GameObject powerUpIndicator;
     public float powerUpStrength = 10f;
+
+   
+    public bool isRed;
+    public bool isBlue;
+    public bool isGreen;
+
+    
+
+    
+
+
     
 
     // Start is called before the first frame update
     void Start()
     {
-       
-       
+
+        rb = player.GetComponent<Rigidbody>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            MovePlayer(Direction.north);
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            MovePlayer(Direction.south);
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            MovePlayer(Direction.west);
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            MovePlayer(Direction.east);
-        }
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
+
+        //apply force
+        Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
+
+        ;
+       
+
+        rb.AddForce(movement * speed);
+        
+
+        
     }
 
-    void MovePlayer(Direction _direction)
-    {
-        switch (_direction)
-        {
-            case Direction.north:
-                player.transform.DOMoveZ(player.transform.position.z + moveDistance, moveTweenTime).SetEase(moveEase);
-                    break;
-            case Direction.east:
-                player.transform.DOMoveX(player.transform.position.x + moveDistance, moveTweenTime).SetEase(moveEase);
-                    break;
-            case Direction.south:
-                player.transform.DOMoveZ(player.transform.position.z + -moveDistance, moveTweenTime).SetEase(moveEase);
-                    break;
-            case Direction.west:
-                player.transform.DOMoveX(player.transform.position.x + -moveDistance, moveTweenTime).SetEase(moveEase);
-                    break;
-
-
-        }
-
-    }
+   
 
     private void OnTriggerEnter(Collider other)
     {
@@ -74,6 +67,31 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             StartCoroutine(PowerUpCountDown());
             powerUpIndicator.gameObject.SetActive(true);
+        }
+
+        if (other.CompareTag("Rgem"))
+        {
+            isRed = true; isBlue = false; isGreen = false;
+            ColourChange();
+            
+            print("Red");
+            
+        }
+
+        if (other.CompareTag("Bgem"))
+        {
+            isRed = false; isBlue = true; isGreen = false;
+            ColourChange();
+            print("Blue");
+           
+        }
+
+        if (other.CompareTag("Ggem"))
+        {
+            isRed = false; isBlue = false; isGreen = true;
+            ColourChange();
+            print("Green");
+           
         }
     }
 
@@ -86,15 +104,52 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && hasPowerUp)
+      
+        if(collision.gameObject.CompareTag("Red") && isRed)
         {
             Rigidbody enemyRigidbody = collision.gameObject.GetComponent<Rigidbody>();
             Vector3 awayFromPlayer = (collision.gameObject.transform.position - transform.position);
-
-            print("Collided with " + collision.gameObject.name + "with powerup set to " +  hasPowerUp);
             enemyRigidbody.AddForce(awayFromPlayer * powerUpStrength, ForceMode.Impulse);
         }
+
+        if (collision.gameObject.CompareTag("Blue") && isBlue)
+        {
+            Rigidbody enemyRigidbody = collision.gameObject.GetComponent<Rigidbody>();
+            Vector3 awayFromPlayer = (collision.gameObject.transform.position - transform.position);
+            enemyRigidbody.AddForce(awayFromPlayer * powerUpStrength, ForceMode.Impulse);
+        }
+
+        if (collision.gameObject.CompareTag("Green") && isGreen)
+        {
+            Rigidbody enemyRigidbody = collision.gameObject.GetComponent<Rigidbody>();
+            Vector3 awayFromPlayer = (collision.gameObject.transform.position - transform.position);
+            enemyRigidbody.AddForce(awayFromPlayer * powerUpStrength, ForceMode.Impulse);
+        }
+
+
+    } 
+
+    public void ColourChange()
+    {
+        if (isRed == true)
+        {
+            gameObject.GetComponent<Renderer>().material.color = Color.red;
+
+        }
+
+
+        if (isBlue == true)
+        {
+            gameObject.GetComponent<Renderer>().material.color = Color.blue;
+        }
+
+        if (isGreen == true)
+        {
+            gameObject.GetComponent<Renderer>().material.color = Color.green;
+        }
     }
+    
+    
 
 
 }
