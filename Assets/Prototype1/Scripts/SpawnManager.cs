@@ -13,11 +13,15 @@ public class SpawnManager : GameBehaviour
     public GameObject REnemy;
     public GameObject BEnemy;
     public GameObject GEnemy;
-    public float spawnRange = 9;
+    public float spawnRange = 14;
     public int enemyCount;
     public int waveNumber = 1;
     public GameObject powerUpPrefab;
     private int enemies;
+
+    UIManager uiManager;
+
+    
      
 
     // Start is called before the first frame update
@@ -27,6 +31,8 @@ public class SpawnManager : GameBehaviour
 
         SpawnEnemyWave(1, (EnemyType)Random.Range(0, System.Enum.GetValues(typeof(EnemyType)).Length));
         //Instantiate(powerUpPrefab, GenerateSpawnPos(), powerUpPrefab.transform.rotation);
+
+        uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
       
       
     }
@@ -42,6 +48,8 @@ public class SpawnManager : GameBehaviour
                 case EnemyType.Red:
                     {
                         Instantiate(REnemy, GenerateSpawnPos(), REnemy.transform.rotation);
+                        REnemy.gameObject.GetComponent<Collider>().enabled = true;
+                        REnemy.gameObject.GetComponent<Collider>().isTrigger = false;
                         print("R spawn");
                     }
                     break;
@@ -52,6 +60,8 @@ public class SpawnManager : GameBehaviour
                 case EnemyType.Blue:
                     {
                         Instantiate(BEnemy, GenerateSpawnPos(), REnemy.transform.rotation);
+                        BEnemy.gameObject.GetComponent<Collider>().enabled = true;
+                        BEnemy.gameObject.GetComponent<Collider>().isTrigger = false;
                         print("B spawn");
                     }
                     break;
@@ -62,6 +72,9 @@ public class SpawnManager : GameBehaviour
                 case EnemyType.Green:
                     {
                         Instantiate(GEnemy, GenerateSpawnPos(), REnemy.transform.rotation);
+                        GEnemy.gameObject.GetComponent<Collider>().enabled = true;
+                        GEnemy.gameObject.GetComponent<Collider>().isTrigger = false;
+
                         print("G spawn");
                     }
                     break;
@@ -85,7 +98,7 @@ public class SpawnManager : GameBehaviour
         if (enemyCount == 0)
         {
             waveNumber++;
-           
+            
 
 
             for (int i = 0; i < waveNumber; i++)
@@ -100,6 +113,7 @@ public class SpawnManager : GameBehaviour
     void NewWave()
     {
         SpawnEnemyWave(1, (EnemyType)Random.Range(0, System.Enum.GetValues(typeof(EnemyType)).Length));
+
     }
 
     

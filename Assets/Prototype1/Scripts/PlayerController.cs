@@ -8,7 +8,7 @@ public class PlayerController : GameBehaviour
    
     public GameObject player;
     public Rigidbody rb;
-    public float speed = 5f;
+    public float speed = 1f;
     public float jumpForce = 2f;
 
 
@@ -17,7 +17,8 @@ public class PlayerController : GameBehaviour
 
     private bool hasPowerUp;
     public GameObject powerUpIndicator;
-    public float powerUpStrength = 10f;
+    public float powerUpStrength = 20f;
+    public GameObject camera;
 
    
     public bool isRed;
@@ -51,9 +52,9 @@ public class PlayerController : GameBehaviour
         ;
        
 
-        rb.AddForce(movement * speed);
-        
+        rb.AddForce(movement * speed, ForceMode.Force);
 
+        camera.gameObject.transform.position = new Vector3(player.gameObject.transform.position.x , player.gameObject.transform.position.y + 10, player.gameObject.transform.position.z - 17);
         
     }
 
@@ -110,6 +111,9 @@ public class PlayerController : GameBehaviour
             Rigidbody enemyRigidbody = collision.gameObject.GetComponent<Rigidbody>();
             Vector3 awayFromPlayer = (collision.gameObject.transform.position - transform.position);
             enemyRigidbody.AddForce(awayFromPlayer * powerUpStrength, ForceMode.Impulse);
+            enemyRigidbody.AddForce(0, 20, 0);
+            print("working");
+
         }
 
         if (collision.gameObject.CompareTag("Blue") && isBlue)
@@ -117,13 +121,18 @@ public class PlayerController : GameBehaviour
             Rigidbody enemyRigidbody = collision.gameObject.GetComponent<Rigidbody>();
             Vector3 awayFromPlayer = (collision.gameObject.transform.position - transform.position);
             enemyRigidbody.AddForce(awayFromPlayer * powerUpStrength, ForceMode.Impulse);
+            enemyRigidbody.AddForce(0, 20, 0);
+
         }
 
         if (collision.gameObject.CompareTag("Green") && isGreen)
         {
             Rigidbody enemyRigidbody = collision.gameObject.GetComponent<Rigidbody>();
-            Vector3 awayFromPlayer = (collision.gameObject.transform.position - transform.position);
+            Vector3 awayFromPlayer = (collision.gameObject.transform.position - transform.position + transform.position);
             enemyRigidbody.AddForce(awayFromPlayer * powerUpStrength, ForceMode.Impulse);
+            enemyRigidbody.AddForce(0, 20, 0);
+            
+            
         }
 
 
@@ -133,19 +142,19 @@ public class PlayerController : GameBehaviour
     {
         if (isRed == true)
         {
-            gameObject.GetComponent<Renderer>().material.color = Color.red;
+            gameObject.GetComponent<Renderer>().material.DOColor(Color.red, moveTweenTime);
 
         }
 
 
         if (isBlue == true)
         {
-            gameObject.GetComponent<Renderer>().material.color = Color.blue;
+            gameObject.GetComponent<Renderer>().material.DOColor(Color.blue, moveTweenTime);
         }
 
         if (isGreen == true)
         {
-            gameObject.GetComponent<Renderer>().material.color = Color.green;
+            gameObject.GetComponent<Renderer>().material.DOColor(Color.green, moveTweenTime);
         }
     }
     
