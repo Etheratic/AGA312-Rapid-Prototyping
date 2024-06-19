@@ -12,6 +12,7 @@ TagManager:
   - Rgem
   - Bgem
   - Ggem
+  - Wgem
   layers:
   - Default
   - TransparentFX

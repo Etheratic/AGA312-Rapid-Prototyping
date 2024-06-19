@@ -17,13 +17,20 @@ public class PlayerController : GameBehaviour
 
     private bool hasPowerUp;
     public GameObject powerUpIndicator;
-    public float powerUpStrength = 20f;
+    public float rPowerUpStrength = 50f;
+    public float gPowerUpStrength = 50f;
+    public float bPowerUpStrength = 50f;
     public GameObject camera;
+    public float explosionForce = 20f;
 
    
     public bool isRed;
     public bool isBlue;
     public bool isGreen;
+
+   
+
+
 
     
 
@@ -49,7 +56,12 @@ public class PlayerController : GameBehaviour
         //apply force
         Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
 
-        ;
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine(ChangeToWhite(0));
+        }
+
+        
        
 
         rb.AddForce(movement * speed, ForceMode.Force);
@@ -62,17 +74,10 @@ public class PlayerController : GameBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("PowerUp"))
-        {
-            hasPowerUp = true;
-            Destroy(other.gameObject);
-            StartCoroutine(PowerUpCountDown());
-            powerUpIndicator.gameObject.SetActive(true);
-        }
 
         if (other.CompareTag("Rgem"))
         {
-            isRed = true; isBlue = false; isGreen = false;
+            isRed = true;
             ColourChange();
             
             print("Red");
@@ -81,7 +86,7 @@ public class PlayerController : GameBehaviour
 
         if (other.CompareTag("Bgem"))
         {
-            isRed = false; isBlue = true; isGreen = false;
+            isBlue = true;
             ColourChange();
             print("Blue");
            
@@ -89,11 +94,18 @@ public class PlayerController : GameBehaviour
 
         if (other.CompareTag("Ggem"))
         {
-            isRed = false; isBlue = false; isGreen = true;
+            isGreen = true;
             ColourChange();
             print("Green");
            
         }
+
+        //if (other.CompareTag("Wgem"))
+        //{
+        //    isRed = false; isBlue = false; isGreen = false;
+        //    ColourChange();
+        //    print("white");
+        //}
     }
 
     IEnumerator PowerUpCountDown()
@@ -110,29 +122,26 @@ public class PlayerController : GameBehaviour
         {
             Rigidbody enemyRigidbody = collision.gameObject.GetComponent<Rigidbody>();
             Vector3 awayFromPlayer = (collision.gameObject.transform.position - transform.position);
-            enemyRigidbody.AddForce(awayFromPlayer * powerUpStrength, ForceMode.Impulse);
-            enemyRigidbody.AddForce(0, 20, 0);
-            print("working");
-
+            enemyRigidbody.AddForce(awayFromPlayer * rPowerUpStrength, ForceMode.Impulse);
+           
         }
 
         if (collision.gameObject.CompareTag("Blue") && isBlue)
         {
             Rigidbody enemyRigidbody = collision.gameObject.GetComponent<Rigidbody>();
             Vector3 awayFromPlayer = (collision.gameObject.transform.position - transform.position);
-            enemyRigidbody.AddForce(awayFromPlayer * powerUpStrength, ForceMode.Impulse);
-            enemyRigidbody.AddForce(0, 20, 0);
+            enemyRigidbody.AddForce(awayFromPlayer * bPowerUpStrength, ForceMode.Impulse);
+            
 
         }
 
         if (collision.gameObject.CompareTag("Green") && isGreen)
         {
             Rigidbody enemyRigidbody = collision.gameObject.GetComponent<Rigidbody>();
-            Vector3 awayFromPlayer = (collision.gameObject.transform.position - transform.position + transform.position);
-            enemyRigidbody.AddForce(awayFromPlayer * powerUpStrength, ForceMode.Impulse);
-            enemyRigidbody.AddForce(0, 20, 0);
+            Vector3 awayFromPlayer = (collision.gameObject.transform.position - transform.position);
+            enemyRigidbody.AddForce(awayFromPlayer * gPowerUpStrength, ForceMode.Impulse);
             
-            
+                       
         }
 
 
@@ -140,25 +149,56 @@ public class PlayerController : GameBehaviour
 
     public void ColourChange()
     {
-        if (isRed == true)
+        if (isRed == true && isBlue != true && isGreen != true)
         {
             gameObject.GetComponent<Renderer>().material.DOColor(Color.red, moveTweenTime);
-
+            
         }
 
-
-        if (isBlue == true)
+        else if (isBlue == true && isGreen != true && isRed != true)
         {
             gameObject.GetComponent<Renderer>().material.DOColor(Color.blue, moveTweenTime);
+            
         }
 
-        if (isGreen == true)
+        else if (isGreen == true && isRed != true && isBlue !=true)
         {
             gameObject.GetComponent<Renderer>().material.DOColor(Color.green, moveTweenTime);
         }
+
+        else if (isGreen ==true && isBlue ==true && isRed != true)
+        {
+            gameObject.GetComponent<Renderer>().material.DOColor(Color.cyan, moveTweenTime);
+            StartCoroutine(ChangeToWhite(10));
+        }
+
+        else if (isGreen == true && isRed == true != isBlue == true)
+        {
+            gameObject.GetComponent<Renderer>().material.DOColor(Color.yellow, moveTweenTime);
+            StartCoroutine(ChangeToWhite(10));
+
+        }
+
+        else if (isRed == true && isBlue == true != isGreen ==true)
+        {
+            gameObject.GetComponent<Renderer>().material.DOColor(Color.magenta, moveTweenTime);
+            StartCoroutine(ChangeToWhite(10));
+        }
+
+        else
+        {
+            gameObject.GetComponent<Renderer>().material.DOColor(Color.white, moveTweenTime);
+        }
+
     }
-    
-    
+
+    private IEnumerator ChangeToWhite(int _time)
+    {
+        yield return new WaitForSeconds(_time);
+        gameObject.GetComponent<Renderer>().material.DOColor(Color.white, moveTweenTime);
+        isRed = false; isBlue = false; isGreen = false;
+
+    }
 
 
 }

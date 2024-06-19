@@ -21,6 +21,6 @@ public class UIManager : GameBehaviour
 
     public void DisplayWaveCount(int _waveNumber)
     {
-        waveCount.text = "wave" + _waveNumber;
+        waveCount.text = "wave: " + _waveNumber;
     }
 }
