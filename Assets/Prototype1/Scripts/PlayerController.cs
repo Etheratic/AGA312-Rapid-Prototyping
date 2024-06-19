@@ -169,20 +169,20 @@ public class PlayerController : GameBehaviour
         else if (isGreen ==true && isBlue ==true && isRed != true)
         {
             gameObject.GetComponent<Renderer>().material.DOColor(Color.cyan, moveTweenTime);
-            StartCoroutine(ChangeToWhite(10));
+            StartCoroutine(ChangeToWhite(5));
         }
 
         else if (isGreen == true && isRed == true != isBlue == true)
         {
             gameObject.GetComponent<Renderer>().material.DOColor(Color.yellow, moveTweenTime);
-            StartCoroutine(ChangeToWhite(10));
+            StartCoroutine(ChangeToWhite(5));
 
         }
 
         else if (isRed == true && isBlue == true != isGreen ==true)
         {
             gameObject.GetComponent<Renderer>().material.DOColor(Color.magenta, moveTweenTime);
-            StartCoroutine(ChangeToWhite(10));
+            StartCoroutine(ChangeToWhite(5));
         }
 
         else
