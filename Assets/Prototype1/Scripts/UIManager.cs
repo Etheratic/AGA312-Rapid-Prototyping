@@ -6,6 +6,7 @@ using TMPro;
 public class UIManager : GameBehaviour
 {
     public TMP_Text waveCount;
+    public TMP_Text score;
     
     
     void Start()
@@ -22,5 +23,10 @@ public class UIManager : GameBehaviour
     public void DisplayWaveCount(int _waveNumber)
     {
         waveCount.text = "wave: " + _waveNumber;
+    }
+
+    public void UpdateScore(int _point)
+    {
+        score.text = "score: " + _point;
     }
 }

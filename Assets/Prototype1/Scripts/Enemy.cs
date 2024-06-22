@@ -7,7 +7,9 @@ public class Enemy : GameBehaviour
     public float speed = 3;
     private Rigidbody enemyRb;
     private GameObject player;
-
+    public int points;
+    UIManager uiManager;
+    PlayerController playerController;
 
 
     // Start is called before the first frame update
@@ -15,8 +17,10 @@ public class Enemy : GameBehaviour
     {
         enemyRb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
-    }
-
+        uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+       
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+    } 
     // Update is called once per frame
     void Update()
     {
@@ -26,6 +30,9 @@ public class Enemy : GameBehaviour
         if (transform.position.y < -10)
         {
             Destroy(gameObject);
+            playerController.UpdatePoints(1);
+            
+           
         }
 
         

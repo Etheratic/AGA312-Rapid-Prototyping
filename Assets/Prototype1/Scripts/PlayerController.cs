@@ -28,6 +28,10 @@ public class PlayerController : GameBehaviour
     public bool isBlue;
     public bool isGreen;
 
+    public int points = 0;
+
+    UIManager uiManager;
+
    
 
 
@@ -44,6 +48,8 @@ public class PlayerController : GameBehaviour
     {
 
         rb = player.GetComponent<Rigidbody>();
+        uiManager.UpdateScore(points);
+        uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
 
     }
 
@@ -70,7 +76,11 @@ public class PlayerController : GameBehaviour
         
     }
 
-   
+    public void UpdatePoints(int _bonus)
+    {
+        points = points + _bonus;
+        uiManager.UpdateScore(points + _bonus);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
