@@ -22,6 +22,7 @@ public class SpawnManager : GameBehaviour
     public int waveNumber = 1;
     public GameObject powerUpPrefab;
     private int enemies;
+    public int mergedCount;
 
     UIManager uiManager;
 
@@ -149,17 +150,29 @@ public class SpawnManager : GameBehaviour
             uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
             waveNumber++;
             uiManager.DisplayWaveCount(waveNumber);
-            
+            if (waveNumber > 5)
+            {
+                mergedCount++;
+            }
+
 
 
             for (int i = 0; i < waveNumber; i++)
             {
                 NewWave();
+
+            }
+
+            for (int i = 0; i < mergedCount; i++)
+            {
+
+                NewMergedWave();
+
+
             }
 
 
         }
-
 
     }
 
@@ -168,10 +181,12 @@ public class SpawnManager : GameBehaviour
         SpawnEnemyWave(1, (EnemyType)Random.Range(0, System.Enum.GetValues(typeof(EnemyType)).Length));
 
         
-
     }
 
-    
+    void NewMergedWave()
+    {
+        SpawnMergedEnemyWave(1, (MergedEnemyType)Random.Range(0, System.Enum.GetValues(typeof(MergedEnemyType)).Length));
+    }
 
     
 }

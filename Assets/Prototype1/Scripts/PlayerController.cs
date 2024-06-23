@@ -15,12 +15,12 @@ public class PlayerController : GameBehaviour
     public float moveTweenTime = 1f;
     public Ease moveEase;
 
-    private bool hasPowerUp;
+    
     public GameObject powerUpIndicator;
     public float rPowerUpStrength = 50f;
     public float gPowerUpStrength = 50f;
     public float bPowerUpStrength = 50f;
-    public GameObject camera;
+    public GameObject mainCamera;
     public float explosionForce = 20f;
 
    
@@ -31,6 +31,9 @@ public class PlayerController : GameBehaviour
     public int points = 0;
 
     UIManager uiManager;
+
+    public int hitPoints = 3;
+    public GameObject spawnPoint;
 
    
 
@@ -67,19 +70,28 @@ public class PlayerController : GameBehaviour
             StartCoroutine(ChangeToWhite(0));
         }
 
-        
+        if (gameObject.transform.position.y < - 10)
+        {
+            hitPoints -= 1;
+            Respawn();
+        }
+
+        if( hitPoints <= 0)
+        {
+            print("dead");
+        }
        
 
         rb.AddForce(movement * speed, ForceMode.Force);
 
-        camera.gameObject.transform.position = new Vector3(player.gameObject.transform.position.x , player.gameObject.transform.position.y + 10, player.gameObject.transform.position.z - 17);
+        mainCamera.gameObject.transform.position = new Vector3(player.gameObject.transform.position.x , player.gameObject.transform.position.y + 10, player.gameObject.transform.position.z - 17);
         
     }
 
     public void UpdatePoints(int _bonus)
     {
         points = points + _bonus;
-        uiManager.UpdateScore(points + _bonus);
+       
     }
 
     private void OnTriggerEnter(Collider other)
@@ -118,12 +130,7 @@ public class PlayerController : GameBehaviour
         //}
     }
 
-    IEnumerator PowerUpCountDown()
-    {
-        yield return new WaitForSeconds(7);
-        hasPowerUp = false;
-        powerUpIndicator.gameObject.SetActive(false);
-    }
+   
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -208,6 +215,12 @@ public class PlayerController : GameBehaviour
         gameObject.GetComponent<Renderer>().material.DOColor(Color.white, moveTweenTime);
         isRed = false; isBlue = false; isGreen = false;
 
+    }
+
+    public void Respawn()
+    {
+       
+        gameObject.transform.position = spawnPoint.transform.position;
     }
 
 
