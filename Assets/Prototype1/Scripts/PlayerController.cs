@@ -51,7 +51,7 @@ public class PlayerController : GameBehaviour
     {
 
         rb = player.GetComponent<Rigidbody>();
-        uiManager.UpdateScore(points);
+        
         uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
 
     }
@@ -221,6 +221,7 @@ public class PlayerController : GameBehaviour
     {
        
         gameObject.transform.position = spawnPoint.transform.position;
+        uiManager.YouDied();
     }
 
 
