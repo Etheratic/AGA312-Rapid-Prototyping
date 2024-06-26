@@ -52,7 +52,7 @@ public class PlayerController : GameBehaviour
 
         rb = player.GetComponent<Rigidbody>();
         
-        uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        uiManager = GameObject.Find("UICanvas").GetComponent<UIManager>();
 
     }
 

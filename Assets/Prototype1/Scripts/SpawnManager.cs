@@ -37,7 +37,7 @@ public class SpawnManager : GameBehaviour
         SpawnEnemyWave(1, (EnemyType)Random.Range(0, System.Enum.GetValues(typeof(EnemyType)).Length));
         //Instantiate(powerUpPrefab, GenerateSpawnPos(), powerUpPrefab.transform.rotation);
 
-        uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        uiManager = GameObject.Find("UICanvas").GetComponent<UIManager>();
         uiManager.DisplayWaveCount(waveNumber);
 
 

@@ -17,7 +17,7 @@ public class Enemy : GameBehaviour
     {
         enemyRb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
-        uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        uiManager = GameObject.Find("UICanvas").GetComponent<UIManager>();
        
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     } 
