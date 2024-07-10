@@ -13,6 +13,9 @@ TagManager:
   - Bgem
   - Ggem
   - Wgem
+  - CinemachineTarget
+  - bullet
+  - enemy
   layers:
   - Default
   - TransparentFX

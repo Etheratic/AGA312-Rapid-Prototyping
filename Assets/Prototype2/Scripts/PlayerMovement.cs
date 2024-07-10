@@ -8,37 +8,52 @@ public class PlayerMovement : GameBehaviour
     public GameObject bullet;
     public Transform bulletSpawn;
     public Rigidbody bulletRb;
-    public int bulletForce;
+    public int bulletForce = 30;
+    public GameObject CameraA;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Vector3 mousePos = Input.mousePosition;
 
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            Shoot();
-        }
 
-        Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+
+        Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
         
 
-        //rotates the player to the direction of the camera
-        transform.eulerAngles = Camera.main.transform.eulerAngles;
+       
         //translates the input vectors into coordinates
         moveDirection = transform.TransformDirection(moveDirection);
 
         transform.position += moveDirection * moveSpeed * Time.deltaTime;
+
+      
+
+       
+
     }
 
     public void Shoot()
     {
+        
+        Vector3 mousePos = Input.mousePosition;
         Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
         
+  
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("enemy"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
