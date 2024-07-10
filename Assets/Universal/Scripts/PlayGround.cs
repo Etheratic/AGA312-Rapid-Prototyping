@@ -19,6 +19,8 @@ public class PlayGround : GameBehaviour
     private int score = 0;
     public int scoreBonus = 100;
 
+    public int health = 1000000;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -114,5 +116,17 @@ public class PlayGround : GameBehaviour
         score = score + scoreBonus;
     }
 
+   
 
+    public void Poison()
+    {
+        Debug.Log("poison");
+        health -= 1;
+    }
+
+    public void AddHealth(int _health) => health += _health;
+
+
+    public void loseHealth(int _health) => health -= _health;
+    
 }
