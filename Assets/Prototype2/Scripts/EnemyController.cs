@@ -17,7 +17,7 @@ public class EnemyController : MonoBehaviour
         gameObject.transform.position += new Vector3(0, 0, -1) * speed * Time.deltaTime;
 
         if (gameObject.transform.position.y < 3)
-        {
+        {               
             Destroy(gameObject);
         }
     }
