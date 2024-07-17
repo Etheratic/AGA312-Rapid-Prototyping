@@ -34,7 +34,7 @@ public class Timer : GameBehaviour
         timerActive = true;
     }
 
-    void StopTimer()
+    public void StopTimer()
     {
         timerActive = false;
     }
