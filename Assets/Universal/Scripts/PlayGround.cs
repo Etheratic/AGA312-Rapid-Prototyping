@@ -15,6 +15,7 @@ public class PlayGround : GameBehaviour
     
     [Header("UI")]
     public TMP_Text scoreText;
+    public TMP_Text highScoreText;
     public Ease scoreEase;
     private int score = 0;
     public int scoreBonus = 100;
@@ -33,7 +34,11 @@ public class PlayGround : GameBehaviour
             {
                 print("One frame later");
             });
-        
+
+        player.transform.position = _SAVE.GetLastCheckpoint();
+        player.GetComponent<Renderer>().material.color = _SAVE.GetColour();
+
+        highScoreText.text = "HIGHEST SCORE " + _SAVE.GetHighestScore().ToString();
     }
 
     // Update is called once per frame
@@ -92,11 +97,13 @@ public class PlayGround : GameBehaviour
 
                     ShakeCamera();
                     IncreaseScore();
+                   
                 });
                 break;
 
 
         }
+        _SAVE.SetLastPosition(player.transform.position);
         ChangeColour();
     }
 
@@ -107,6 +114,8 @@ public class PlayGround : GameBehaviour
 
     void ChangeColour()
     {
+        Color c = ColorX.GetRandomColour();
+        _SAVE.SetColour(c);
         player.GetComponent<Renderer>().material.DOColor(ColorX.GetRandomColour(), moveTweenTime);
     }
 
@@ -114,6 +123,7 @@ public class PlayGround : GameBehaviour
     {
         TweenX.TweenNumbers(scoreText, score, score + scoreBonus, 1, scoreEase);
         score = score + scoreBonus;
+        _SAVE.SetScore(score);
     }
 
    

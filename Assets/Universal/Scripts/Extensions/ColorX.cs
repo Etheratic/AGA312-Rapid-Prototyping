@@ -72,6 +72,22 @@ public static class ColorX
     }
 
     /// <summary>
+    /// Colorizes a Gameobject
+    /// </summary>
+    /// <param name="_gameObject">The GameObject.</param>
+    /// <param name="newColor">The color.</param>
+    static public void ColorizeGameObject(GameObject _gameObject, Color newColor)
+    {
+        if (_gameObject != null)
+        {
+            if (_gameObject.GetComponent<Renderer>().material.HasProperty("_Color"))
+                _gameObject.GetComponent<Renderer>().material.SetColor("_Color", newColor);
+            else if (_gameObject.GetComponent<Renderer>().material.HasProperty("_TintColor"))
+                _gameObject.GetComponent<Renderer>().material.SetColor("_TintColor", newColor);
+        }
+    }
+
+    /// <summary>
     /// Sets the color property of a Component
     /// </summary>
     /// <param name="comp">some generic Component</param>
