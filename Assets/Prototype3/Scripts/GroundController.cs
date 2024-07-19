@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GroundController : MonoBehaviour
 {
-    public GameObject timer;
+    public GameObject timer3;
     public int tilesCompleted;
     public int numOfTiles;
     public GameObject winScreen;
@@ -24,7 +24,7 @@ public class GroundController : MonoBehaviour
         if(tilesCompleted == numOfTiles)
         {
             print("gameCompleted yay");
-            timer.GetComponent<Timer>().StopTimer();
+            timer3.GetComponent<Timer>().StopTimer();
             Time.timeScale = 0;
             winScreen.SetActive(true);
         }
