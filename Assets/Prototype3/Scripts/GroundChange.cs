@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class GroundChange : GameBehaviour
 {
-    public float growth;
+    public int growth = 0;
     public bool isGrowing;
     public bool isComplete;
     public int tilesCompleted;
@@ -24,6 +24,7 @@ public class GroundChange : GameBehaviour
         isGrowing = false;
         gameObject.GetComponent<Renderer>().material.color = new Color(.4196f, .3176f, .251f, 1);
 
+        growth = 0;
 
         tiles = GameObject.FindGameObjectsWithTag("tile").Length;
         hasCompleted = false;
@@ -34,22 +35,22 @@ public class GroundChange : GameBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (growth >= .5f && hasCompleted == false)
+        if (growth >= 1 && hasCompleted == false)
         {
             gameObject.GetComponent<Renderer>().material.DOColor(new Color(.4196f - .2941f,.6922f - .3176f, .2927f - .251f, 1), changeSpeed);
         }
 
-        if (growth >= 1f && hasCompleted == false)
+        if (growth >= 2 && hasCompleted == false)
         {
             gameObject.GetComponent<Renderer>().material.DOColor(new Color(.2941f,.6922f,.2927f,1), changeSpeed);
         }
 
-        if (growth >= 1.5f && hasCompleted == false)
+        if (growth >= 3 && hasCompleted == false)
         {
             gameObject.GetComponent<Renderer>().material.DOColor(new Color(1f -.2941f,.7255f - .6922f, .3529f - .2927f, 1), changeSpeed);
         }
 
-        if (growth >= 2f && hasCompleted == false) 
+        if (growth >= 4 && hasCompleted == false) 
         {
           
             
@@ -65,7 +66,7 @@ public class GroundChange : GameBehaviour
 
         if (isGrowing == true)
         {
-            growth += 1 * Time.deltaTime;
+           //rowth += 1 * Time.deltaTime;
           
         }
 
@@ -76,7 +77,7 @@ public class GroundChange : GameBehaviour
 
     public void Grow()
     {
-        isGrowing = true;
+        growth += 1;
   
     }
     public void StopGrow()
