@@ -8,6 +8,8 @@ public class PivotPlayer : GameBehaviour
     public GameObject pivotPointB;
     public float spinSpeed;
     public bool pivotAB;
+    public GameObject reset;
+  
 
 
     // Start is called before the first frame update
@@ -34,7 +36,13 @@ public class PivotPlayer : GameBehaviour
             transform.RotateAround(pivotPointB.transform.position, Vector3.forward, -20 * Time.deltaTime * spinSpeed);
         }
         
+        
 
        
+    }
+
+    private void OnBecameInvisible()
+    {
+        gameObject.transform.position = reset.transform.position;
     }
 }

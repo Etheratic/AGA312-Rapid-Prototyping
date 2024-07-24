@@ -185,8 +185,7 @@ MonoBehaviour:
   tilesCompleted: 0
   tiles: 0
   hasCompleted: 0
-  groundController: {fileID: 5509775695475783333, guid: 8069532ed16fcbb4488e0b43c79849f3,
-    type: 3}
+  changeSpeed: 1
 --- !u!54 &7712364744459029983
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -24,7 +24,7 @@ public class GroundController : MonoBehaviour
         if(tilesCompleted == numOfTiles)
         {
             print("gameCompleted yay");
-            timer3.GetComponent<Timer>().StopTimer();
+            timer3.GetComponent<Timer3>().StopTimer();
             Time.timeScale = 0;
             winScreen.SetActive(true);
         }
