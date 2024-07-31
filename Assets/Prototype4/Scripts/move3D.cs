@@ -10,6 +10,8 @@ public class move3D : GameBehaviour
     private float CameraZDistance;
     public float width;
     public bool isSelected;
+
+    
       
 
     // Start is called before the first frame update
@@ -17,8 +19,9 @@ public class move3D : GameBehaviour
     {
         mainCamera = Camera.main;
         CameraZDistance = mainCamera.WorldToScreenPoint(transform.position).z;
-       
-     
+        width = gameObject.GetComponent<Transform>().localScale.x;
+
+        
     }
 
    
@@ -41,14 +44,16 @@ public class move3D : GameBehaviour
 
         
 
-        if (Input.GetKey(KeyCode.Alpha1) && isSelected == true)
+        if (Input.GetKey(KeyCode.P) && isSelected == true)
         {
             width += 10;
-            
+            print("grow");
+            float scale = transform.localScale.x;
+            gameObject.transform.localScale += new Vector3(scale, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
 
         }
 
-        if (Input.GetKey(KeyCode.Alpha2) && isSelected == true)
+        if (Input.GetKey(KeyCode.O) && isSelected == true)
         {
 
             width -= 10;
@@ -57,6 +62,6 @@ public class move3D : GameBehaviour
 
         }
 
-        width = gameObject.GetComponent<Transform>().localScale.x;
+       
     }
 }

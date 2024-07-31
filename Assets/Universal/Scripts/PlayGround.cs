@@ -22,6 +22,8 @@ public class PlayGround : GameBehaviour
 
     public int health = 1000000;
 
+    private float bloom;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +51,7 @@ public class PlayGround : GameBehaviour
        if(Input.GetKeyDown(KeyCode.W))
         {
             MovePlayer(Direction.north);
+           
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
@@ -110,6 +113,7 @@ public class PlayGround : GameBehaviour
     void ShakeCamera()
     {
         Camera.main.DOShakePosition(moveTweenTime / 2, shakeStrength);
+        _EFFECTS.TweenVignetteInOut(0.5f, 0.5f);
     }
 
     void ChangeColour()

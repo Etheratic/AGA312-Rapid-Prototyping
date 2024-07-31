@@ -21,7 +21,7 @@ public class SpawnManager4 : MonoBehaviour
 
     public void Spawn(int _type)
     {
-        Instantiate(equations[_type], spawnPos.transform);
+        Instantiate(equations[_type], spawnPos.transform );
         print("spawned" + _type);
     }
 }

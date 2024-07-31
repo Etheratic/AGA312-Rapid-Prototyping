@@ -8,6 +8,8 @@ public class GameBehaviour : MonoBehaviour
 {
     protected static SaveManager _SAVE {  get { return SaveManager.INSTANCE;  } }
 
+    protected static EffectsManager _EFFECTS { get { return EffectsManager.Instance; } }
+
     #region Coroutine Helpers
 
     /// <summary>
@@ -83,16 +85,29 @@ public class GameBehaviour<T> : GameBehaviour where T : GameBehaviour
         }
     }
 
-    // Instantiate singleton
-    protected bool Instantiate()
+    protected virtual void Awake()
     {
-        if (_instance != null)
+        if(_instance == null)
         {
-            Debug.LogWarning("Instance of GameBehaviour<" + typeof(T).ToString() + "> already exists! Destroying myself.\nIf you see this when a scene is LOADED from another one, ignore it.");
-            DestroyImmediate(gameObject);
-            return false;
+            _instance = this as T;
         }
-        _instance = this as T;
-        return true;
+        else
+        {
+            Destroy(gameObject);
+        }
     }
+
+
+    //// Instantiate singleton
+    //protected bool Instantiate()
+    //{
+    //    if (_instance != null)
+    //    {
+    //        Debug.LogWarning("Instance of GameBehaviour<" + typeof(T).ToString() + "> already exists! Destroying myself.\nIf you see this when a scene is LOADED from another one, ignore it.");
+    //        DestroyImmediate(gameObject);
+    //        return false;
+    //    }
+    //    _instance = this as T;
+    //    return true;
+    //}
 }
