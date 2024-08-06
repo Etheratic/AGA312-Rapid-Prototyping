@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerMovement : GameBehaviour
 {
@@ -10,12 +11,14 @@ public class PlayerMovement : GameBehaviour
     public Rigidbody bulletRb;
     public int bulletForce = 30;
     public GameObject CameraA;
+    public GameObject deathPanel;
     
 
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1;
+        deathPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -49,11 +52,10 @@ public class PlayerMovement : GameBehaviour
   
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void Die()
     {
-        if (other.CompareTag("enemy"))
-        {
-            Destroy(gameObject);
-        }
+        Time.timeScale = 0;
+        Destroy(gameObject);
+        deathPanel.SetActive(true);
     }
 }

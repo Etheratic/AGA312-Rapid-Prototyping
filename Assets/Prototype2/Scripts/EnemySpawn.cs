@@ -21,7 +21,7 @@ public class EnemySpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        enemy.transform.position = new Vector3(0, 0, -1) * Time.deltaTime;
+       
         if (enemyCount <= 0)
         {
             SpawnEnemies(2, (Spawn)Random.Range(0, System.Enum.GetValues(typeof(Spawn)).Length));
@@ -37,6 +37,7 @@ public class EnemySpawn : MonoBehaviour
                 case Spawn.A:
                     {
                         Instantiate(enemy, spawnA.transform.position, spawnA.transform.rotation);
+                        enemyCount += 1;
                         print("working");
                         
                     }
@@ -64,5 +65,10 @@ public class EnemySpawn : MonoBehaviour
             enemyCount++;
            
         }
+    }
+
+    public void DecreaseEnemyCount()
+    {
+        enemyCount -= 1;
     }
 }

@@ -19,8 +19,8 @@ public class move3D : GameBehaviour
     {
         mainCamera = Camera.main;
         CameraZDistance = mainCamera.WorldToScreenPoint(transform.position).z;
-        width = gameObject.GetComponent<Transform>().localScale.x;
-
+        width = 1;
+        
         
     }
 
@@ -44,22 +44,28 @@ public class move3D : GameBehaviour
 
         
 
-        if (Input.GetKey(KeyCode.P) && isSelected == true)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && isSelected == true)
         {
-            width += 10;
+            width += 0.1f;
             print("grow");
-            float scale = transform.localScale.x;
-            gameObject.transform.localScale += new Vector3(scale, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
+           
+            gameObject.transform.localScale += new Vector3(width, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
 
         }
 
-        if (Input.GetKey(KeyCode.O) && isSelected == true)
+        if (Input.GetKeyDown(KeyCode.DownArrow) && isSelected == true)
         {
 
-            width -= 10;
-            width = gameObject.GetComponent<Transform>().localScale.x;
+            width -= 0.1f;
+            
+            gameObject.transform.localScale = new Vector3(width, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
 
 
+        }
+
+        if(Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            gameObject.transform.localScale = new Vector3(1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
         }
 
        
