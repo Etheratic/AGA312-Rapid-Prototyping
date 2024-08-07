@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using DG.Tweening;
 
-[RequireComponent(typeof(Collider))]
 
 public class move3D : GameBehaviour
 {
@@ -10,7 +11,8 @@ public class move3D : GameBehaviour
     private float CameraZDistance;
     public float width;
     public bool isSelected;
-
+    public Renderer shape;
+   
     
       
 
@@ -20,17 +22,22 @@ public class move3D : GameBehaviour
         mainCamera = Camera.main;
         CameraZDistance = mainCamera.WorldToScreenPoint(transform.position).z;
         width = 0.5f;
+        shape = GetComponentInChildren<Renderer>();
         
         
     }
 
-   
+    private void OnMouseOver()
+    {
+        shape.material.DOColor(Color.red, .2f);
+    }
     private void OnMouseDrag()
     {
-        isSelected = true;
+        
         Vector3 ScreenPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, CameraZDistance);
         Vector3 NewWorldPos = mainCamera.ScreenToWorldPoint(ScreenPos);
         transform.position = NewWorldPos;
+       
     }
 
     private void OnMouseUp()
@@ -38,11 +45,16 @@ public class move3D : GameBehaviour
         isSelected = false;
     }
 
+    private void OnMouseExit()
+    {
+        shape.material.DOColor(Color.blue, .2f);
+    }
+
     // Update is called once per frame
     void Update()
     {
-
         
+
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && isSelected == true)
         {

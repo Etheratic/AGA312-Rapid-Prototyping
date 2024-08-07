@@ -12,6 +12,8 @@ public class EnemySpawn : MonoBehaviour
     public GameObject spawnC;
     private int enemyCount;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {

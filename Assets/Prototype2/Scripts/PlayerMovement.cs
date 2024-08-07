@@ -6,10 +6,7 @@ using TMPro;
 public class PlayerMovement : GameBehaviour
 {
     public float moveSpeed = 1f;
-    public GameObject bullet;
-    public Transform bulletSpawn;
-    public Rigidbody bulletRb;
-    public int bulletForce = 30;
+    
     public GameObject CameraA;
     public GameObject deathPanel;
     
@@ -24,8 +21,7 @@ public class PlayerMovement : GameBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 mousePos = Input.mousePosition;
-
+        
 
 
         Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
@@ -43,13 +39,9 @@ public class PlayerMovement : GameBehaviour
 
     }
 
-    public void Shoot()
+    public void OnTriggerEnter(Collider other)
     {
-        
-        Vector3 mousePos = Input.mousePosition;
-        Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
-        
-  
+        Die();
     }
 
     public void Die()

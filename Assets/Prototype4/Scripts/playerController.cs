@@ -46,8 +46,10 @@ public class playerController : GameBehaviour
         {
             gameObject.transform.position = spawn.transform.position;
             gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
+            
+            
             _EFFECTS.TweenVignetteInOut(0.5f, 0.5f);
-            //points = 0;
+            
           
            
         }

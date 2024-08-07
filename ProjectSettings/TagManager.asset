@@ -17,6 +17,7 @@ TagManager:
   - bullet
   - enemy
   - tile
+  - shape
   layers:
   - Default
   - TransparentFX
