@@ -19,7 +19,7 @@ public class move3D : GameBehaviour
     {
         mainCamera = Camera.main;
         CameraZDistance = mainCamera.WorldToScreenPoint(transform.position).z;
-        width = 1;
+        width = 0.5f;
         
         
     }
@@ -49,7 +49,7 @@ public class move3D : GameBehaviour
             width += 0.1f;
             print("grow");
            
-            gameObject.transform.localScale += new Vector3(width, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
+            gameObject.transform.localScale = new Vector3(width, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
 
         }
 
@@ -65,7 +65,7 @@ public class move3D : GameBehaviour
 
         if(Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            gameObject.transform.localScale = new Vector3(1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
+            gameObject.transform.localScale = new Vector3(0.5f, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
         }
 
        
