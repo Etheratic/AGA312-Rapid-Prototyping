@@ -13,7 +13,7 @@ public class LightingManager : MonoBehaviour
     //Variables
     [SerializeField, Range(0, 24)] private float timeOfDay;
     public int dayCounter;
-    private bool dayCounted = false;
+    
     public float timeSpeed = 1;
 
     private void Update()
