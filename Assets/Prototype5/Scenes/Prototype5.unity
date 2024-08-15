@@ -280,7 +280,7 @@ Transform:
   m_GameObject: {fileID: 348869141}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.91, z: 0}
+  m_LocalPosition: {x: 0, y: 0.759, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -375,13 +375,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 689751223}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.091115445, y: -0, z: -0, w: 0.9958404}
-  m_LocalPosition: {x: 0, y: 4.2000003, z: -10.48}
+  m_LocalRotation: {x: 0.33603883, y: -0, z: -0, w: 0.94184816}
+  m_LocalPosition: {x: 0, y: 6.23, z: -8.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 348869143}
-  m_LocalEulerAnglesHint: {x: 10.456, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 39.271, y: 0, z: 0}
 --- !u!114 &689751227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -526,7 +526,7 @@ Transform:
   m_GameObject: {fileID: 718160440}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.73, z: 0}
   m_LocalScale: {x: 3.5936, y: 1, z: 3.8015068}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -607,13 +607,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1872529985}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0.9997058, z: -0, w: -0.024256788}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.5447, z: 1}
+  m_LocalScale: {x: 0.30415, y: 1.5447, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 348869143}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -182.78, z: 0}
 --- !u!114 &1872529987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -621,7 +621,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1872529985}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11957e500333b1c46880cedf64c37e27, type: 3}
   m_Name: 
@@ -668,8 +668,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: f4d27897b0b46264db15669f0f9b3d02, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -733,13 +732,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1927646278123908448}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.5488918, y: -0.5485118, z: -0.44585708, w: 0.446166}
-  m_LocalPosition: {x: -0.34, y: 0.483, z: -0.48}
+  m_LocalRotation: {x: -0.18655245, y: -0.70715374, z: -0.6670192, w: -0.14218755}
+  m_LocalPosition: {x: 0.028, y: -0.141, z: -0.172}
   m_LocalScale: {x: 37.244003, y: 37.244003, z: 37.243996}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 348869143}
-  m_LocalEulerAnglesHint: {x: -101.788, y: 0, z: -89.95999}
+  m_LocalEulerAnglesHint: {x: -117.087006, y: -81.19, z: -95.11099}
 --- !u!1 &1927646278123908448
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,6 +753,7 @@ GameObject:
   - component: {fileID: 2748439502624307328}
   - component: {fileID: 2748439502624307330}
   - component: {fileID: 2748439502624307329}
+  - component: {fileID: 2748439502624307331}
   m_Layer: 0
   m_Name: Scythe
   m_TagString: Untagged
@@ -824,6 +824,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2748439502624307331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927646278123908448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b50fab1faa0e044aeefe7dd65bff6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class SpriteBillboard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(freezeXZAxis)
+        if (freezeXZAxis)
         {
             transform.rotation = Quaternion.Euler(0f, Camera.main.transform.rotation.eulerAngles.y, 0f);
         }
@@ -17,6 +17,6 @@ public class SpriteBillboard : MonoBehaviour
         {
             transform.rotation = Camera.main.transform.rotation;
         }
-                
+
     }
 }
