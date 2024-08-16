@@ -16,6 +16,13 @@ public class LightingManager : MonoBehaviour
     
     public float timeSpeed = 1;
 
+    public GameController gameController;
+
+    private void Start()
+    {
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
+    }
+
     private void Update()
     {
         if (preset == null)
@@ -30,6 +37,7 @@ public class LightingManager : MonoBehaviour
             if (timeOfDay >= 23)
             {
                 dayCounter += 1;
+                gameController.NewDay();
                 
                 
                 timeOfDay = 0;

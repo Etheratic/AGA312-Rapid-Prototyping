@@ -10,6 +10,7 @@ public class GameBehaviour : MonoBehaviour
 
     protected static EffectsManager _EFFECTS { get { return EffectsManager.Instance; } }
 
+   
     #region Coroutine Helpers
 
     /// <summary>
