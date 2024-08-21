@@ -8,7 +8,7 @@ public class GameController : GameBehaviour
     public int days;
     public int cropsHarvested;
 
-    
+
 
     public void NewDay()
     {

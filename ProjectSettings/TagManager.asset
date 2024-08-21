@@ -19,6 +19,7 @@ TagManager:
   - tile
   - shape
   - Scythe
+  - GrownCrop
   layers:
   - Default
   - TransparentFX

@@ -19,6 +19,14 @@ public class Harvest : MonoBehaviour
         print("crop harvested");
     }
 
-
+    public void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("GrownCrop"))
+        {
+            print("harvest");
+            Destroy(collision.gameObject);
+            gameController.HarvestCrop();
+        }
+    }
 
 }
