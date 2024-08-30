@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GameGrid : MonoBehaviour
 {
-    private int height = 10;
-    private int width = 10;
+    public int height = 6;
+    public int width = 6;
     private float gridSpaceSize = 5f;
 
     [SerializeField] private GameObject gridCellPrefab;

@@ -5,11 +5,15 @@ using UnityEngine;
 public class Harvest : MonoBehaviour
 {
     public GameController gameController;
+    GridCell gridCell;
+    InputManager inputManager;
 
     // Start is called before the first frame update
     void Start()
     {
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        gridCell = FindObjectOfType<GridCell>();
+        inputManager = FindObjectOfType<InputManager>();
     }
 
     public void HarvestCrop()
@@ -26,6 +30,8 @@ public class Harvest : MonoBehaviour
             print("harvest");
             Destroy(collision.gameObject);
             gameController.HarvestCrop();
+           
+           
         }
     }
 

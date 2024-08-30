@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpritePlayerController : MonoBehaviour
 {
     public float moveSpeed;
-
+    public GameObject reset;
     
 
     // Start is called before the first frame update
@@ -30,10 +30,7 @@ public class SpritePlayerController : MonoBehaviour
         moveDirectionZ = transform.TransformDirection(moveDirectionZ);
 
         transform.position += moveDirectionZ * moveSpeed * Time.deltaTime;
-
-       
-
-     
-
     }
+
+   
 }

@@ -8,12 +8,20 @@ public class InputManager : MonoBehaviour
     [SerializeField] private LayerMask whatIsAGridLayer;
     GridCell gridCell;
     public GameObject crop;
+    public int cropSpawn;
+
+    public int SeedsInInventory = 5;
+    UIController uiController;
 
     // Start is called before the first frame update
     void Start()
     {
         gameGrid = FindObjectOfType<GameGrid>();
         gridCell = FindObjectOfType<GridCell>();
+        uiController = FindObjectOfType<UIController>();
+        uiController.UpdateSeed(SeedsInInventory);
+
+
     }
 
     // Update is called once per frame
@@ -22,12 +30,25 @@ public class InputManager : MonoBehaviour
         GridCell cellMouseIsOver = IsMouseOverAGridSpace();
         if(cellMouseIsOver != null)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse1))
+            if (Input.GetKeyDown(KeyCode.Mouse1) && SeedsInInventory > 0 && cellMouseIsOver.isOccupied == false)
             {
+                SeedsInInventory -= 1;
                 Instantiate(crop, cellMouseIsOver.transform);
-                gridCell.isOccupied = true;
+
+
+                cellMouseIsOver.isOccupied = true;
+              
+              
             }
+
         }
+
+        
+
+        uiController.UpdateSeed(SeedsInInventory);
+
+
+
     }
 
     //returns the frid cell if the mouse is over it and null if over nothing
@@ -46,7 +67,7 @@ public class InputManager : MonoBehaviour
         }
     }
 
-
+   
    
 
 }
