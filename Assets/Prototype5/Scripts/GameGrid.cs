@@ -17,7 +17,7 @@ public class GameGrid : MonoBehaviour
         CreateGrid();
     }
 
-    private void CreateGrid()
+    public void CreateGrid()
     {
         gameGrid = new GameObject[height, width];
 

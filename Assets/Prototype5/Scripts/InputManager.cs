@@ -67,6 +67,14 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    public void cellIsClear()
+    {
+        GridCell cellMouseIsOver = IsMouseOverAGridSpace();
+
+        cellMouseIsOver.isOccupied = false;
+
+
+    }
    
    
 
